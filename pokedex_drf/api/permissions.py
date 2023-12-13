@@ -1,7 +1,7 @@
 from rest_framework import permissions
 
 
-class AdminOnlyPermissions(permissions.DjangoModelPermissions):
+class UserPermissions(permissions.DjangoModelPermissions):
     
     perms_map = {
         'GET': [], 
@@ -14,3 +14,6 @@ class AdminOnlyPermissions(permissions.DjangoModelPermissions):
         }
     
 
+class AllDenied(permissions.BasePermission):
+    def has_permission(self, request, view):
+        return False

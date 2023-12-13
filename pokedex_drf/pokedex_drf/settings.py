@@ -86,9 +86,9 @@ WSGI_APPLICATION = 'pokedex_drf.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'username',
-        'USER': 'db_name',
-        'PASSWORD': 'password'
+        'NAME': 'Pokedex_DRF',
+        'USER': 'postgres',
+        'PASSWORD': '123Kokiri'
     }
 }
 
