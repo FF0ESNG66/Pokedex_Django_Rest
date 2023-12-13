@@ -1,7 +1,10 @@
 from django.urls import path, include
+from . import views
 
 app_name = 'api'
 
 urlpatterns = [
-    path('pokedex/', include('pokedex.urls'))
+    # Available APIs
+    path('pokedex/', include('pokedex.urls')),
+    path('login/', include('login.urls'))
 ]

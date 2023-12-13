@@ -37,7 +37,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    # · · · · Third-Party Apps · · · · 
+
     'rest_framework',
+    'rest_framework.authtoken',
+
+    # · · · · Local Apps · · · · 
+    
     'api',
     'pokedex'
 ]
@@ -79,9 +86,9 @@ WSGI_APPLICATION = 'pokedex_drf.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'db_name',
-        'USER': 'user',
-        'PASSWORD': 'pass'
+        'NAME': 'Pokedex_DRF',
+        'USER': 'postgres',
+        'PASSWORD': '123Kokiri'
     }
 }
 
