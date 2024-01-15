@@ -33,6 +33,21 @@ class PokedexSerializer(serializers.ModelSerializer):
                 data[key] = value.capitalize()  
             elif isinstance(value, list):
                 data[key] = [item.capitalize() for item in value if isinstance(item, str)]
+            elif isinstance(value, dict):
+                formated_dict = {stat.capitalize():val for stat, val in value.items()}
+                data[key] = formated_dict
+
+
+    def to_internal_value(self, data):
+        data['types'] = [type.capitalize() for type in data['types']]
+        return super().to_internal_value(data)
+    
+# Note
+    
+# the to_internal_value method is one of the earliest entry points that incoming data encounters during the deserialization process.
+# is responsible for converting the external representation of data (e.g., JSON data from a POST request) 
+# into the internal representation used by Django (usually validated and formatted data before saving to the database).
+
 
 
 
@@ -76,6 +91,9 @@ class PokedexUpdateSerializer(serializers.ModelSerializer):
                 data[key] = value.capitalize()  
             elif isinstance(value, list):
                 data[key] = [item.capitalize() for item in value if isinstance(item, str)]
+            elif isinstance(value, dict):
+                formated_dict = {stat.capitalize():val for stat, val in value.items()}
+                data[key] = formated_dict
 
 
 

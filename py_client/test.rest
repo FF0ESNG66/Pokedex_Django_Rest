@@ -1,0 +1,134 @@
+# · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · 
+
+# - Note -
+
+# I'm using Rest Client extension by Huachao Mao in VSCode to do these request
+
+
+# · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · · 
+
+
+
+
+# Login
+
+POST http://127.0.0.1:8000/api/login/login/
+Content-Type: application/json
+
+{"username": "SNG66", "password": "123Kokiri"}
+
+
+
+
+###
+
+# Sign Up
+
+POST http://127.0.0.1:8000/api/login/sign_up/
+Content-Type: application/json
+
+{"username": "SNG77", "password": "123Kokiri", "email":"dummy@gmail.com"}
+
+
+
+
+###
+
+# Test Token
+
+GET http://127.0.0.1:8000/api/login/test_token/
+Content-Type: application/json
+Authorization: Token 53a2a7c5c37cafb0c93a08415c78119ec30cc9c7
+
+{}
+
+
+
+
+###
+
+# GET List
+
+GET http://127.0.0.1:8000/api/pokedex/
+Content-Type: application/json
+Authorization: Token 53a2a7c5c37cafb0c93a08415c78119ec30cc9c7
+
+
+
+
+###
+
+# GET Detail
+
+GET http://127.0.0.1:8000/api/pokedex/bulbasaur
+Content-Type: application/json
+Authorization: Token 53a2a7c5c37cafb0c93a08415c78119ec30cc9c7
+
+
+
+
+### 
+
+# POST
+
+POST http://127.0.0.1:8000/api/pokedex/
+Content-Type: application/json
+Authorization: Token 6b8f093af2d8dda8cd2166b0aab54410bf498082
+
+{
+    "pokedex_num": 23,
+    "name": "EkanS",
+    "description": "A very common sight in grassland, etc. It flicks its tongue in and out to sense danger in its surroundings.",
+    "abilities": ["Shed Skin", "Intimidate"],
+    "types": ["poiSON"],
+    "location": ["Route 4", "Route 8", "Route 9", "Route 10", "Route 11", "Route 22", "Route 23"],
+    "base_stats": {
+        "hp": 35,
+        "Att": 60,
+        "Def": 44,
+        "S.Att": 40,
+        "S.Def": 54,
+        "Spd": 55
+    }
+}
+
+
+
+
+###
+
+# PUT
+
+PUT http://127.0.0.1:8000/api/pokedex/update/ekans/
+Content-Type: application/json
+Authorization: Token 6b8f093af2d8dda8cd2166b0aab54410bf498082
+
+{
+    "types": ["PoIsOn"]
+}
+
+
+
+
+###
+
+# DELETE
+
+
+PUT http://127.0.0.1:8000/api/pokedex/delete/spearow/
+Content-Type: application/json
+Authorization: Token 6b8f093af2d8dda8cd2166b0aab54410bf498082
+
+
+
+###
+
+# Algoria search
+
+
+GET http://127.0.0.1:8000/api/pokedex/search/?q=charizard
+Content-Type: application/json
+Authorization: Token 6b8f093af2d8dda8cd2166b0aab54410bf498082
+
+
+{}

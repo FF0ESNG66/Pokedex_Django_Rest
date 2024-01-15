@@ -1,10 +1,13 @@
-from django.shortcuts import render
 from .models import Pokedex
 from .serializers import PokedexSerializer, PokedexUpdateSerializer
 from rest_framework import generics
-from rest_framework.authentication import SessionAuthentication
 from api.authentication import CustomAuthentication
-from api.permissions import UserPermissions, AllDenied
+from api.permissions import UserPermissions, AllDenied, AllowAnyAuthenticated
+from . import client
+from rest_framework.response import Response
+from rest_framework import status
+from rest_framework.views import APIView
+
 
 
 # GET (List)  &  POST
@@ -61,3 +64,19 @@ class PokedexDestroyView(generics.DestroyAPIView):
     lookup_field = 'name__iexact'
 
 pokedex_destroy_view = PokedexDestroyView.as_view()
+
+
+
+# Algolia Search
+
+class PokedexSearchView(APIView):
+    authentication_classes = [CustomAuthentication]
+    permission_classes = [AllowAnyAuthenticated]
+    def get(self, request, *args, **kwargs):
+        query = request.GET.get('q')
+        if not query:
+             return Response({'error': 'A valid query parameter ("q") is required.'}, status=status.HTTP_400_BAD_REQUEST)
+        results = client.perform_search(query)
+        return Response({"hits":results})
+    
+# pokedex_search_view = PokedexSearchView.as_view()

@@ -16,4 +16,13 @@ class UserPermissions(permissions.DjangoModelPermissions):
 
 class AllDenied(permissions.BasePermission):
     def has_permission(self, request, view):
+        if request.user.is_staff:
+            return True
+        return False
+    
+
+class AllowAnyAuthenticated(permissions.BasePermission):
+    def has_permission(self, request, view):
+        if request.user and request.user.is_authenticated:
+            return True
         return False
